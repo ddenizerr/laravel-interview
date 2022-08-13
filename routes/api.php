@@ -17,3 +17,6 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// TODO CREATE CONTROLLERS AND ACTIONS
+// TODO CREATE API
