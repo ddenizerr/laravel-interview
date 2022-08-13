@@ -15,21 +15,17 @@ return new class extends Migration
     {
         Schema::create('properties', function (Blueprint $table) {
             $table->id();
-            $table->string('organization');
-            $table->bigInteger('property_type');
+            $table->foreignId('parent_property_id')->nullable()->constrained('properties');
+            $table->string('organisation');
+            $table->string('property_type');
             $table->integer('uprn');
             $table->string('address');
-            $table->string('town');
-            $table->string('postcode');
+            $table->string('town')->nullable();
+            $table->string('postcode')->nullable();
             $table->boolean('live');
             $table->timestamps();
         });
-
-        Schema::table('properties', function (Blueprint $table){
-           $table->foreignId('parent_property_id')->constrained('properties');
-        });
     }
-
     /**
      * Reverse the migrations.
      *
