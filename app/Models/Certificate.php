@@ -18,8 +18,8 @@ class Certificate extends Model
         return $this->belongsTo(Property::class, 'property_id', 'id');
     }
 
-    public function notes(): HasMany
+    public function model(): HasMany
     {
-        return $this->hasMany(Note::class,'model_id','id');
+        return $this->hasMany(Note::class, 'model_id', 'id');
     }
 }
