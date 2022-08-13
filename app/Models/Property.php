@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use PHPUnit\Framework\NoChildTestSuiteException;
+use Prophecy\Exception\Doubler\MethodNotExtendableException;
 
 class Property extends Model
 {
@@ -24,9 +26,9 @@ class Property extends Model
         return $this->belongsTo(Property::class, 'parent_property_id', 'id');
     }
 
-    public function certification(): HasMany
+    public function certificate(): HasMany
     {
-        return $this->hasMany(Certification::class, 'property_id','id');
+        return $this->hasMany(Certificate::class, 'property_id','id');
     }
 
 }
