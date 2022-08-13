@@ -13,13 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('certificates', function (Blueprint $table) {
-            $table->id();
-            $table->string('stream_name');
-            $table->foreignId('property_id')->constrained('properties')->cascadeOnDelete();
-            $table->date('issue_date');
-            $table->date('next_due_date');
-            $table->timestamps();
+        Schema::table('certificates', function (Blueprint $table){
+            $table->softDeletes();
         });
     }
 
@@ -30,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('certificates');
+        Schema::table('certificates',function (Blueprint $table){
+            $table->dropSoftDeletes();
+        });
     }
 };
