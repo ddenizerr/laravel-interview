@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('properties', function (Blueprint $table) {
             $table->id();
-            $table->string('organisation');
+            $table->string('organization');
             $table->bigInteger('property_type');
             $table->integer('uprn');
             $table->string('address');
