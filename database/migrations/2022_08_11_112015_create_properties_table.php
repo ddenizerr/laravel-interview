@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('properties', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('parent_property_id')->nullable();
+            $table->foreignId('parent_property_id')->constrained('properties')->cascadeOnDelete();
             $table->string('organisation');
             $table->string('property_type');
             $table->integer('uprn');
@@ -24,11 +26,6 @@ return new class extends Migration
             $table->boolean('live');
             $table->timestamps();
         });
-
-        Schema::table('properties', function (Blueprint $table){
-           $table->foreignId('parent_property_id')->constrained('properties');
-        });
-    }
 
     /**
      * Reverse the migrations.
