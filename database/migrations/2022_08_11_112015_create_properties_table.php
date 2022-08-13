@@ -15,18 +15,17 @@ return new class extends Migration
     {
         Schema::create('properties', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('parent_property_id')->nullable();
-            $table->foreignId('parent_property_id')->constrained('properties')->cascadeOnDelete();
+            $table->foreignId('parent_property_id')->nullable()->constrained('properties');
             $table->string('organisation');
             $table->string('property_type');
             $table->integer('uprn');
             $table->string('address');
-            $table->string('town');
-            $table->string('postcode');
+            $table->string('town')->nullable();
+            $table->string('postcode')->nullable();
             $table->boolean('live');
             $table->timestamps();
         });
-
+    }
     /**
      * Reverse the migrations.
      *
