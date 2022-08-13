@@ -15,6 +15,10 @@ return new class extends Migration
     {
         Schema::create('certificates', function (Blueprint $table) {
             $table->id();
+            $table->string('stream_name');
+            $table->foreignId('property_id')->constrained('properties')->cascadeOnDelete();
+            $table->date('issue_date');
+            $table->date('next_due_date');
             $table->timestamps();
         });
     }

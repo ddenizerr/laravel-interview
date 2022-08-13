@@ -15,6 +15,10 @@ return new class extends Migration
     {
         Schema::create('notes', function (Blueprint $table) {
             $table->id();
+            $table->string('model_type');
+            $table->unsignedBigInteger('model_id');
+            $table->foreign('model_id')->references('id')->on('certificates');
+            $table->string('note');
             $table->timestamps();
         });
     }

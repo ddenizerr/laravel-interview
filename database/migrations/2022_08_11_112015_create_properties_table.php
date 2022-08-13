@@ -16,11 +16,17 @@ return new class extends Migration
         Schema::create('properties', function (Blueprint $table) {
             $table->id();
             $table->string('organisation');
-            $table->string('property_type');
-            $table->id();
-            $table->id();
-            $table->id();
+            $table->bigInteger('property_type');
+            $table->integer('uprn');
+            $table->string('address');
+            $table->string('town');
+            $table->string('postcode');
+            $table->boolean('live');
             $table->timestamps();
+        });
+
+        Schema::table('properties', function (Blueprint $table){
+           $table->foreignId('parent_property_id')->constrained('properties');
         });
     }
 
