@@ -20,6 +20,7 @@ return new class extends Migration
             $table->date('issue_date');
             $table->date('next_due_date');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

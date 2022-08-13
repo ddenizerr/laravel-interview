@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('postcode');
             $table->boolean('live');
             $table->timestamps();
+            $table->softDeletes();
         });
 
         Schema::table('properties', function (Blueprint $table){
