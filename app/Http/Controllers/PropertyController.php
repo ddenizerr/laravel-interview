@@ -119,7 +119,6 @@ class PropertyController extends Controller
         $property = Property::find($id);
 
         try {
-
             $property->delete();
             Log::info('Property deleted successfully . ');
             DB::commit();
@@ -129,5 +128,32 @@ class PropertyController extends Controller
             Log::error('Property cannot be deleted . ');
             return response('Property with id = ' . $property->id . ' can not be deleted' . $exception->getMessage(), 500);
         }
+    }
+
+    public function haveMoreThan5Certificates()
+    {
+        $properties = Property::withCount('certificates')->get();
+
+        return $properties->where('certificates_count', '>', 5);
+    }
+
+
+    public function haveMoreThan5CertificatesRaw()
+    {
+//          select *
+//          from properties
+//          left join certificates c on properties.id = c.property_id
+//          group by properties.id
+//          having count(c.property_id) > 5;
+
+
+        $ids = DB::table('properties')
+            ->selectRaw('properties.id')
+            ->leftJoin('certificates', 'properties.id', '=','certificates.property_id')
+            ->groupBy('properties.id')
+            ->havingRaw('count(certificates.property_id) > 5')
+            ->get();
+
+        return $ids;
     }
 }

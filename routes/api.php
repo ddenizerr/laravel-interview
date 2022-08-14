@@ -22,12 +22,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::controller(PropertyController::class)->group(function (){
-    Route::get('/properties', 'index')->name('index');
-    Route::get('/properties/{id}','property')->name('property');
-    Route::post('/property','create')->name('create');
-    Route::patch('/property/{id}','update')->name('update');
-    Route::delete('/property/{id}','destroy')->name('destroy');
-    Route::get('/property/{id}/certificate','getCertificates')->name('certificate');
+    Route::get('/properties', 'index');
+    Route::get('/properties/{id}','property');
+    Route::post('/property','create');
+    Route::patch('/property/{id}','update');
+    Route::delete('/property/{id}','destroy');
+    Route::get('/property/{id}/certificate','getCertificates');
+    Route::get('/property/certificate/count','haveMoreThan5Certificates');
+    Route::get('/property/certificate/count/raw','haveMoreThan5CertificatesRaw');
 });
 
 Route::controller(CertificatesController::class)->group(function (){
@@ -42,3 +44,4 @@ Route::controller(NoteController::class)->group(function (){
     Route::get('/{type}/{id}/note','show');
     Route::post('/{type}/{id}/note','create');
 });
+
