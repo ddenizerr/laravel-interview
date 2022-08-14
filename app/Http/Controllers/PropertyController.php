@@ -129,17 +129,5 @@ class PropertyController extends Controller
             Log::error('Property cannot be deleted . ');
             return response('Property with id = ' . $property->id . ' can not be deleted' . $exception->getMessage(), 500);
         }
-
-
     }
-
-    public function getNotes($id)
-    {
-        $property = Property::find($id);
-
-        return response()->json($property->notes());
-
-    }
-
-
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\NoteController;
 use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\CertificatesController;
 use Illuminate\Http\Request;
@@ -26,16 +27,18 @@ Route::controller(PropertyController::class)->group(function (){
     Route::post('/property','create')->name('create');
     Route::patch('/property/{id}','update')->name('update');
     Route::delete('/property/{id}','destroy')->name('destroy');
-
     Route::get('/property/{id}/certificate','getCertificates')->name('certificate');
-    Route::get('/property/{id}/notes','getNotes')->name('notes');
 });
 
 Route::controller(CertificatesController::class)->group(function (){
     Route::get('/certificate', 'index')->name('index');
     Route::get('/certificate/{id}', 'certificate')->name('certificate');
     Route::post('/certificate', 'create')->name('create');
-    Route::get('/certificate/{id}/note', 'getNotes')->name('get-notes');
 
 });
 
+Route::controller(NoteController::class)->group(function (){
+
+    Route::get('/{type}/{id}/note','show');
+    Route::post('/{type}/{id}/note','create');
+});

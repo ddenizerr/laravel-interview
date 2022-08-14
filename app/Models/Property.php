@@ -32,7 +32,7 @@ class Property extends Model
      * @var string
      */
     protected $table = 'properties';
-   // protected $fillable = ['parent_property_id', 'organisation', 'property_type', 'uprn', 'address', 'town', 'postcode', 'live'];
+    // protected $fillable = ['parent_property_id', 'organisation', 'property_type', 'uprn', 'address', 'town', 'postcode', 'live'];
     protected $guarded = [];
     protected $primaryKey = 'id';
 
@@ -44,16 +44,6 @@ class Property extends Model
     public function certificates(): HasMany
     {
         return $this->hasMany(Certificate::class, 'property_id', 'id');
-    }
-
-    public function notes(){
-        $notesCollection = collect();
-        foreach($this->certificates as $certificate) {
-            if ($certificate->notes!==null){
-                $notesCollection->push($certificate->notes);
-            }
-        }
-        return $notesCollection;
     }
 
 }
