@@ -19,6 +19,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property $created_at
  * @property $updated_at
  * @property $deleted_at
+ * @property mixed $certificates
  *
  * **/
 class Property extends Model
@@ -45,13 +46,14 @@ class Property extends Model
         return $this->hasMany(Certificate::class, 'property_id', 'id');
     }
 
-//    public function notes(){
-//        $notes = collect();
-//        foreach($this->certificates as $certificate) {
-//            $notes = collection_push($certificate->notes)
-//        }
-//
-//        return $notes;
-//    }
+    public function notes(){
+        $notesCollection = collect();
+        foreach($this->certificates as $certificate) {
+            if ($certificate->notes!==null){
+                $notesCollection->push($certificate->notes);
+            }
+        }
+        return $notesCollection;
+    }
 
 }

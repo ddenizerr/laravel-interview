@@ -74,37 +74,12 @@ class CertificatesController extends Controller
 
     }
 
-//    public function update(UpdateCertificateRequest $request, $id)
-//    {
-//        $certificate = Certificate::find($id);
-//
-//        dd($certificate);
-//
-//        try {
-//            $certificate->stream_name = $request->stream_name;
-//            $certificate->property_id = $request->property_id;
-//            $certificate->issue_date = $request->issue_date;
-//            $certificate->next_due_date = $request->next_due_date;
-//
-//            Log::info('A new certificate created.');
-//
-//        } catch (Exception $exception) {
-//            DB::rollBack();
-//            Log::error('Can not create new certificate');
-//            return response()->json(['message' => 'Certificate create error: ' . $exception->getMessage(), 500]);
-//        }
-//
-//        return response()->json([
-//            'message' => 'New Certificate Created.',
-//        ], 200);
-//
-//    }
 
     public function getNotes($id)
     {
-        $property = Property::find($id);
+        $certificate= Certificate::find($id);
 
-        return response()->json($property->certificate);
+        return response()->json($certificate->notes);
     }
 
 }

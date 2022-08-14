@@ -133,18 +133,11 @@ class PropertyController extends Controller
 
     }
 
-    public function getCertificates($id)
-    {
-        $property = Property::find($id);
-
-        return response()->json($property->certificate);
-    }
-
     public function getNotes($id)
     {
         $property = Property::find($id);
 
-        return response()->json($property->certificate->notes);
+        return response()->json($property->notes());
 
     }
 
