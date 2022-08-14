@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('properties', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('parent_property_id')->nullable()->constrained('properties');
+            $table->foreignId('parent_property_id')->nullable()->constrained('properties')->cascadeOnDelete();
             $table->string('organisation');
             $table->string('property_type');
             $table->integer('uprn');
